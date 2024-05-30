@@ -12,6 +12,7 @@ def main():
     # Cocoa Historical Time Series
     st.header('Cocoa Historical Time Series')
     cocoa_df = yf.Ticker("CC=F").history(period="max").loc[:,"Open":"Volume"]
+    cocoa_df.index = cocoa_df.index.tz_convert(None)
 
     filter_dict = {}
     n_cols = 5
