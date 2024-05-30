@@ -38,7 +38,8 @@ def main():
         filter_dict['start_date'] = start_date
 
     with col_list[4]:
-        end_date = st.date_input('End Date', value=cocoa_df.index.max(), min_value=cocoa_df.index.min(), max_value=cocoa_df.index.max())
+        end_date = st.date_input('End Date', value=cocoa_df.index.max(), min_value=cocoa_df.index.min(), 
+                                 max_value=cocoa_df.index.max())
         filter_dict['end_date'] = end_date
 
     freq = freq_dict[filter_dict['freq']]
@@ -62,7 +63,7 @@ def main():
     col_mapping = {'2022/23 (estimated)':'2022/23', '2023/24 (forecasted)':'2023/24'}
     prod_df = prod_df.rename(columns=col_mapping)
 
-    sel_region = st.multiselect('Regions', list(prod_df.index))
+    sel_region = st.multiselect('Regions', list(prod_df.index), default=list(prod_df.index))
     df = prod_df.loc[sel_region]
 
     st.dataframe(df)
@@ -96,8 +97,8 @@ def main():
         filter_dict['start_date'] = start_date
 
     with col_list[2]:
-        end_date = st.date_input('End Date', value=cocoa_df.index.max(), min_value=cocoa_df.index.min(), max_value=cocoa_df.index.max(),
-                                 key='end_date_1')
+        end_date = st.date_input('End Date', value=cocoa_df.index.max(), min_value=cocoa_df.index.min(), 
+                                 max_value=cocoa_df.index.max(), key='end_date_1')
         filter_dict['end_date'] = end_date
 
     fut_ser = partition_df[filter_dict['fut_type']]
